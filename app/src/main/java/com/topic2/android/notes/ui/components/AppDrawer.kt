@@ -21,6 +21,7 @@ import com.topic2.android.notes.routing.NotesRouter
 import com.topic2.android.notes.routing.Screen
 import com.topic2.android.notes.theme.NotesThemeSettings
 
+
 @Composable
 private fun AppDrawerHeader(){
     Row(modifier = Modifier.fillMaxWidth()){
@@ -114,5 +115,35 @@ fun ScreenNavigationButtonPreview(){
             isSelected = true,
             onClick = {}
         )
+    }
+}
+
+@Composable
+private fun LightDarkThemeItem(){
+    Row(
+        Modifier
+            .padding(8.dp)
+    ){
+        Text(text = "Включить темную тему",
+            style = MaterialTheme.typography.body2,
+            color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 8.dp)
+                .align(alignment = Alignment.CenterVertically)
+        )
+        Switch(checked = NotesThemeSettings.isDarkThemeEnabled,
+            onCheckedChange = {NotesThemeSettings.isDarkThemeEnabled = it},
+            modifier = Modifier
+                .padding(start = 8.dp, end = 8.dp)
+                .align(alignment = Alignment.CenterVertically)
+        )
+    }
+}
+@Preview
+@Composable
+fun LightDarkThemeItemPreview(){
+    NotesTheme {
+        LightDarkThemeItem()
     }
 }
